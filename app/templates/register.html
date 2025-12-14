@@ -19,6 +19,16 @@
             <h2>Registrarse</h2>
         </div>
 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <p class="flash {{ category }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
         <form class="formulario-login" method="POST" action="/register">
 
             <div class="campo-grupo">
@@ -49,6 +59,5 @@
 
         </form>
     </div>
-
 </body>
 </html>

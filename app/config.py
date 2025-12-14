@@ -15,3 +15,9 @@ class DevelopmentConfig:
     MYSQL_DB = os.getenv("MYSQL_DB")
     MYSQL_CURSORCLASS = "DictCursor"
 
+    MAIL_SERVER = "smtp.gmail.com"
+    MAIL_PORT = 465
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = os.getenv("EMAIL_USER")
+    MAIL_PASSWORD = os.getenv("EMAIL_PASS")
+    MAIL_DEFAULT_SENDER = os.getenv("EMAIL_USER")
