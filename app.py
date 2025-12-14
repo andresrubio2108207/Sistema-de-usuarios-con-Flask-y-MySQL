@@ -252,7 +252,7 @@ def reset_password(token):
     try:
         # Verify token (expires after 1 hour)
         email = serializer.loads(token, salt='password-reset-salt', max_age=3600)
-    except:
+    except Exception:
         flash('El enlace de recuperación es inválido o ha expirado.', 'error')
         return redirect(url_for('forgot_password'))
     
