@@ -3,6 +3,7 @@ from flask_mysqldb import MySQL
 from flask_mail import Mail, Message
 import bcrypt
 import re
+import os
 from datetime import datetime, timedelta
 from itsdangerous import URLSafeTimedSerializer
 from config import Config
@@ -316,4 +317,7 @@ def reset_password(token):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Debug mode should be controlled by environment variable
+    # Never use debug=True in production!
+    debug_mode = os.getenv('FLASK_ENV', 'production') == 'development'
+    app.run(debug=debug_mode, host='0.0.0.0', port=5000)
