@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <link rel="icon" href="{{ url_for('static', filename='Images/icono.webp') }}">
+
+    <title>Recuperar Contraseña</title>
+</head>
+<body>
+
+    <div class="interfaz">
+        <div class="titulo">
+            <h2>Recuperar Contraseña</h2>
+        </div>
+
+        <form class="formulario-login" method="POST" action="/forgetpass">
+
+            <div class="campo-grupo">
+                <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+
+            <button type="submit">Enviar enlace de recuperación</button>
+
+            <div class="enlaces-extra">
+                <a href="/">Volver al inicio de sesión</a>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>
