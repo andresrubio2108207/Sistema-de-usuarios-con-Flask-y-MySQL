@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - Sistema de Usuarios{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="hero">
+        <h1>Bienvenido al Sistema de Usuarios</h1>
+        <p class="hero-subtitle">Gestión segura de usuarios con Flask y MySQL</p>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>🔐 Seguridad</h3>
+                <p>Contraseñas hasheadas con bcrypt</p>
+            </div>
+            <div class="feature-card">
+                <h3>✉️ Validación</h3>
+                <p>Validación de email y contraseña robusta</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔑 Recuperación</h3>
+                <p>Recuperación de contraseña segura por email</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 Dashboard</h3>
+                <p>Panel privado para usuarios autenticados</p>
+            </div>
+        </div>
+
+        {% if not session.get('user_id') %}
+        <div class="hero-actions">
+            <a href="{{ url_for('register') }}" class="btn btn-primary">Crear Cuenta</a>
+            <a href="{{ url_for('login') }}" class="btn btn-secondary">Iniciar Sesión</a>
+        </div>
+        {% else %}
+        <div class="hero-actions">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Ir al Dashboard</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
