@@ -1,21 +1,22 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os, re, secrets
+import pymysql
 
 load_dotenv()
+
+pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_USE_SIGNER"] = True
 
-# Configuración MySQL
 app.config["MYSQL_HOST"] = os.getenv("MYSQL_HOST")
-app.config["MYSQL_PORT"] = int(os.getenv("MYSQL_PORT"))
+app.config["MYSQL_PORT"] = int(os.getenv("MYSQL_PORT", 3306))  # Puerto por defecto 3306
 app.config["MYSQL_USER"] = os.getenv("MYSQL_USER")
 app.config["MYSQL_PASSWORD"] = os.getenv("MYSQL_PASSWORD")
 app.config["MYSQL_DB"] = os.getenv("MYSQL_DB")
@@ -29,6 +30,8 @@ app.config["MAIL_USERNAME"] = os.getenv("EMAIL_USER")
 app.config["MAIL_PASSWORD"] = os.getenv("EMAIL_PASS")
 app.config["MAIL_DEFAULT_SENDER"] = os.getenv("EMAIL_USER")
 
+# Inicialización
+from flask_mysqldb import MySQL  
 mysql = MySQL(app)
 mail = Mail(app)
 
